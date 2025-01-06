@@ -129,7 +129,30 @@ namespace _9310_class
 
         static Queue<int> QCouples(Queue<int> q)
         {
-            return null;
+            Queue<int> temp = new Queue<int>();
+            Queue<int> ret = new Queue<int>();
+
+            while (!q.IsEmpty())
+            {
+                int head = q.Remove();
+                int count = 1;
+
+                while (!q.IsEmpty())
+                {
+                    if (q.Head() == head)
+                    {
+                        count++;
+                        q.Remove();
+                    }
+                    else
+                        temp.Insert(q.Remove());
+                }
+                if (count == 2)
+                    ret.Insert(head);
+                while (!temp.IsEmpty())
+                    q.Insert(temp.Remove());
+            }
+            return ret;
         }
 
         //4
